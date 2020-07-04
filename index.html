@@ -38,7 +38,20 @@
 
   <script type="text/javascript">
     (function () {
-      setTimeout(() => { window.location.href = "https://shatteredprism.us/"; }, 3000);
+      var doRedirect = true;
+
+      // for browsers which support URLSearchParams, check
+      // for flag disabling automatic redirect
+      if (window.URLSearchParams) {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('noredirect') === '1') {
+          doRedirect = false;
+        }
+      }
+
+      if (doRedirect) {
+        setTimeout(() => { window.location.href = "https://shatteredprism.us/"; }, 3000);
+      }
     })();
   </script>
 </body>
